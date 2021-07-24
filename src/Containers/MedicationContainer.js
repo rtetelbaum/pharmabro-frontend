@@ -2,7 +2,7 @@ import React from 'react';
 
 function MedicationContainer() {
 	return(
-		<div>
+		<div id="medication-cont">
 			<h1>Medications</h1>
 		</div>
 	) 

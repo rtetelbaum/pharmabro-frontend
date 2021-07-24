@@ -2,7 +2,7 @@ import React from 'react';
 
 function IngredientComponent() {
 	return(
-		<div>
+		<div id="ingredient-comp">
 			<h1>Ingredient</h1>
 		</div>
 	) 

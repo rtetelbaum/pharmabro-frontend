@@ -2,7 +2,7 @@ import React from 'react';
 
 function NavComponent() {
 	return(
-		<div>
+		<div id="nav-comp">
 			<h1>Navigation</h1>
 		</div>
 	) 
