@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import React from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
@@ -6,7 +5,7 @@ import NavComponent from "./Components/NavComponent";
 import LogInComponent from "./Components/LogInComponent";
 import HomeComponent from "./Components/HomeComponent";
 import MedicationContainer from "./Containers/MedicationContainer";
-import IngredientContainer from "./Container/IngredientContainer";
+import IngredientContainer from "./Containers/IngredientContainer";
 import MedicationComponent from "./Components/MedicationComponent";
 import CreateMedComponent from "./Components/CreateMedComponent";
 import IngredientComponent from "./Components/IngredientComponent";
@@ -20,14 +19,15 @@ function App() {
 
 			<div id="main-div">
 				<Switch>
-					<Route exact path="login" component={LogInComponent} />
-					<Route exact path="medications/create" component={CreateMedComponent} />
-					<Route exact path="medications/:id" component={MedicationComponent} />
-					<Route exact path="medications" component={MedicationContainer} />
-					<Route exact path="ingredients/create" component={CreateIngComponent} />
-					<Route exact path="ingredients/:id" component={IngredientComponent} />
-					<Route exact path="ingredients" component={IngredientContainer} />
-					<Route path="*" component={HomeComponent} />
+					<Route exact path="/login" component={LogInComponent} />
+					<Route exact path="/medications/create" component={CreateMedComponent} />
+					<Route exact path="/medications/:id" component={MedicationComponent} />
+					<Route exact path="/medications" component={MedicationContainer} />
+					<Route exact path="/ingredients/create" component={CreateIngComponent} />
+					<Route exact path="/ingredients/:id" component={IngredientComponent} />
+					<Route exact path="/ingredients" component={IngredientContainer} />
+					<Route exact path="*"><Redirect to="/" /></Route>
+					<Route path="/" component={HomeComponent} />
 				</Switch>
 			</div>
       
