@@ -26,8 +26,8 @@ function App() {
 					<Route exact path="/ingredients/create" component={CreateIngComponent} />
 					<Route exact path="/ingredients/:id" component={IngredientComponent} />
 					<Route exact path="/ingredients" component={IngredientContainer} />
-					<Route exact path="*"><Redirect to="/" /></Route>
-					<Route path="/" component={HomeComponent} />
+					<Route exact path="/" component={HomeComponent} />
+					<Route exact path="/*"><Redirect to="/" /></Route>
 				</Switch>
 			</div>
       
