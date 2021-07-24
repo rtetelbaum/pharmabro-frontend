@@ -1,6 +1,8 @@
 import './App.css';
-import React from 'react';
+import { React, useEffect } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { getUser } from './Redux/actions';
 import NavComponent from "./Components/NavComponent";
 import LogInComponent from "./Components/LogInComponent";
 import HomeComponent from "./Components/HomeComponent";
@@ -11,7 +13,15 @@ import CreateMedComponent from "./Components/CreateMedComponent";
 import IngredientComponent from "./Components/IngredientComponent";
 import CreateIngComponent from "./Components/CreateIngComponent";
 
-function App() {
+function App(props) {
+
+	const getUser = props.getUser
+
+	useEffect(() => {
+		const userID = localStorage.getItem("userID")
+		if (userID) { getUser(userID) }
+	}, [getUser])
+
   return (
     <div id="App">
 
@@ -35,4 +45,10 @@ function App() {
   );
 }
 
-export default App;
+function mdp(dispatch) {
+	return {
+		getUser: userID => dispatch(getUser(userID))
+	}
+}
+
+export default connect(null, mdp)(App)

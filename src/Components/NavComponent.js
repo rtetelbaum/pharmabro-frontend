@@ -1,11 +1,43 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { logOutUser } from '../Redux/actions';
+import { Link } from 'react-router-dom';
 
-function NavComponent() {
+function NavComponent(props) {
 	return(
 		<div id="nav-comp">
-			<h1>Navigation</h1>
+			<Link to="/">Home</Link>
+
+			{
+				props.user
+					?
+					props.user.id
+					?
+					<>
+						<Link to="/medications">Medications</Link>
+						<Link to="/ingredients">Ingredients</Link>
+						<Link to="/home" onClick={() => props.logOutUser()}>Log Out</Link>
+					</>
+						:
+						<Link to="/login">Log In</Link>
+					:
+					<Link to="/login">Log In</Link>
+			}
+
 		</div>
 	) 
 }
 
-export default NavComponent
+function msp(state) {
+	return {
+		user: state.user
+	}
+}
+
+function mdp(dispatch) {
+	return {
+		logOutUser: () => dispatch(logOutUser())
+	}
+}
+
+export default connect(msp, mdp)(NavComponent)
