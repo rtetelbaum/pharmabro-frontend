@@ -4,6 +4,7 @@ import {
 	LOG_OUT_USER,
 	GET_USERS,
 	GET_MEDS,
+	GET_MED,
 	DELETE_MED,
 } from './actionTypes'
 
@@ -49,6 +50,16 @@ export function getMeds() {
 			.then(r => r.json())
 			.then(medObjs => {
 				dispatch({ type: GET_MEDS, payload: medObjs })
+			})
+	}
+}
+
+export function getMed(medID) {
+	return function (dispatch) {
+		fetch(`${BASE_URL}/medications/${medID}`)
+			.then(r => r.json())
+			.then(medObj => {
+				dispatch({ type: GET_MED, payload: medObj })
 			})
 	}
 }

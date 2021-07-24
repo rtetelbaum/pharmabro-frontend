@@ -1,5 +1,5 @@
 import { React, useEffect } from 'react';
-import { getMeds, deleteMed } from '../Redux/actions';
+import { getMeds } from '../Redux/actions';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
@@ -55,8 +55,7 @@ function msp(state) {
 
 function mdp(dispatch) {
 	return {
-		getMeds: () => dispatch(getMeds()),
-		deleteMed: (medID) => dispatch(deleteMed(medID))
+		getMeds: () => dispatch(getMeds())
 	}
 }
 

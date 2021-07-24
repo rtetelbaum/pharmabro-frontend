@@ -4,6 +4,7 @@ const defaultState = {
 	user: null,
 	users: null,
 	meds: null,
+	med: null
 }
 
 function userReducer(prevState = defaultState.user, action) {
@@ -39,10 +40,20 @@ function medsReducer(prevState = defaultState.meds, action) {
 	}
 }
 
+function medReducer(prevState = defaultState.med, action) {
+	switch (action.type) {
+		case "GET_MED":
+			return action.payload
+		default:
+			return prevState
+	}
+}
+
 const rootReducer = combineReducers({
 	user: userReducer,
 	users: usersReducer,
-	meds: medsReducer
+	meds: medsReducer,
+	med: medReducer,
 })
 
 export default rootReducer
