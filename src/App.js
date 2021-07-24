@@ -1,23 +1,36 @@
 import logo from './logo.svg';
 import './App.css';
+import React from 'react';
+import { Route, Switch, Redirect } from 'react-router-dom';
+import NavComponent from "./Components/NavComponent";
+import LogInComponent from "./Components/LogInComponent";
+import HomeComponent from "./Components/HomeComponent";
+import MedicationContainer from "./Containers/MedicationContainer";
+import IngredientContainer from "./Container/IngredientContainer";
+import MedicationComponent from "./Components/MedicationComponent";
+import CreateMedComponent from "./Components/CreateMedComponent";
+import IngredientComponent from "./Components/IngredientComponent";
+import CreateIngComponent from "./Components/CreateIngComponent";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div id="App">
+
+			<NavComponent />
+
+			<div id="main-div">
+				<Switch>
+					<Route exact path="login" component={LogInComponent} />
+					<Route exact path="medications/create" component={CreateMedComponent} />
+					<Route exact path="medications/:id" component={MedicationComponent} />
+					<Route exact path="medications" component={MedicationContainer} />
+					<Route exact path="ingredients/create" component={CreateIngComponent} />
+					<Route exact path="ingredients/:id" component={IngredientComponent} />
+					<Route exact path="ingredients" component={IngredientContainer} />
+					<Route path="*" component={HomeComponent} />
+				</Switch>
+			</div>
+      
     </div>
   );
 }
