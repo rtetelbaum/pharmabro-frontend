@@ -2,7 +2,8 @@ import { combineReducers } from 'redux'
 
 const defaultState = {
 	user: null,
-	users: null
+	users: null,
+	meds: null,
 }
 
 function userReducer(prevState = defaultState.user, action) {
@@ -27,9 +28,21 @@ function usersReducer(prevState = defaultState.users, action) {
 	}
 }
 
+function medsReducer(prevState = defaultState.meds, action) {
+	switch (action.type) {
+		case "GET_MEDS":
+			return action.payload
+		case "DELETE_MED":
+			return { ...prevState, meds: [...prevState.meds.filter(med => med.id !== action.payload)] }
+		default:
+			return prevState
+	}
+}
+
 const rootReducer = combineReducers({
 	user: userReducer,
-	users: usersReducer
+	users: usersReducer,
+	meds: medsReducer
 })
 
 export default rootReducer
