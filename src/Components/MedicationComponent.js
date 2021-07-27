@@ -1,7 +1,6 @@
 import { React, useEffect } from 'react';
 import { getMed, deleteMed } from '../Redux/actions';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 
 function MedicationComponent(props) {
 
@@ -10,12 +9,17 @@ function MedicationComponent(props) {
 
 	useEffect(() => getMed(medID), [getMed, medID])
 
+	const deleteMedHandler = () => {
+		props.deleteMed(medID)
+	}
+
 	return(
 		<div id="medication-comp">
 			{
 				props.med ?
 					<>
 						<h1>{props.med.name}</h1>
+						<button onClick={() => deleteMedHandler(medID)}>DELETE</button>
 						<ul>
 							{
 								props.med.ingredients.map(ingredient => 
@@ -46,9 +50,10 @@ function msp(state) {
 	}
 }
 
-function mdp(dispatch) {
+function mdp(dispatch, ownProps) {
 	return {
-		getMed: (medID) => dispatch(getMed(medID))
+		getMed: (medID) => dispatch(getMed(medID)),
+		deleteMed: (medID) => dispatch(deleteMed(medID, ownProps))
 	}
 }
 

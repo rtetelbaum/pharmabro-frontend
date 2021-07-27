@@ -64,7 +64,7 @@ export function getMed(medID) {
 	}
 }
 
-export function deleteMed(medID) {
+export function deleteMed(medID, ownProps) {
 	return function (dispatch) {
 		fetch(`${BASE_URL}/medications/${medID}`, {
 			method: 'DELETE',
@@ -72,11 +72,10 @@ export function deleteMed(medID) {
 				'Content-Type': 'application/json'
 			}
 		})
-			.then(r => r.json())
-			.then(data => {
-				if (Object.keys(data).length === 0) {
-					dispatch({ type: DELETE_MED, payload: medID })
-				}
+			.then(r => {
+				dispatch({ type: DELETE_MED, payload: medID })
+				alert("Medication Deleted")
+				ownProps.history.push(`/medications`)
 			})
 	}
 }

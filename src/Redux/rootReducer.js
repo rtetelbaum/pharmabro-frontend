@@ -33,8 +33,6 @@ function medsReducer(prevState = defaultState.meds, action) {
 	switch (action.type) {
 		case "GET_MEDS":
 			return action.payload
-		case "DELETE_MED":
-			return { ...prevState, meds: [...prevState.meds.filter(med => med.id !== action.payload)] }
 		default:
 			return prevState
 	}
@@ -44,6 +42,8 @@ function medReducer(prevState = defaultState.med, action) {
 	switch (action.type) {
 		case "GET_MED":
 			return action.payload
+		case "DELETE_MED":
+			return null
 		default:
 			return prevState
 	}
